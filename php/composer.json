@@ -1,0 +1,20 @@
+{
+  "name": "ahungry/boxed-scalars",
+  "description": "Wrap all data in smarter type definitions.",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Matthew Carter",
+      "email": "m@ahungry.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Com\\Ahungry\\BoxedScalars\\": "src/Com/Ahungry/BoxedScalars/"
+    },
+    "files": [
+      "src/Com/Ahungry/BoxedScalars.php"
+    ]
+  }
+}
