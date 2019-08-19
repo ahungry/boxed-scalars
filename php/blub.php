@@ -24,7 +24,7 @@ class Phone extends Str
 
 class Business extends Map
 {
-    public function getSchema () {
+    public static function getSchema () {
         return [
             'name'  => BusinessName::class,
             'ph'    => Phone::class,
@@ -34,7 +34,7 @@ class Business extends Map
 
 class TwoBusinesses extends Map
 {
-    public function getSchema () {
+    public static function getSchema () {
         return [
             'b1' => Business::class,
             'b2' => Business::class,
@@ -53,19 +53,22 @@ try {
 }
 
 // Sending too many keys - that's completely fine.
-$business = new Business(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '5553332222']);
+// $business = new Business(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '5553332222']);
+$business = Business::make(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '5553332222']);
 var_dump ($business);
 
 try {
-    $businessBad = new Business(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '']);
+    // $businessBad = new Business(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '']);
+    $businessBad = Business::make(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '']);
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
 
-$twoBusinesses = new TwoBusinesses(
+$twoBusinesses = TwoBusinesses::make(
     [
         'b1' => ['name' => 'Blabla', 'ph' => '5553332222'],
         'b2' => ['name' => 'Blabla', 'ph' => '5553332222'],
     ]
 );
+var_dump ('here we go');
 var_dump ($twoBusinesses);

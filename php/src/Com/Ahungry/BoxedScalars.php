@@ -64,18 +64,25 @@ abstract class Str {
 
 abstract class Map {
     // Should be in the same order as our constructor args.
-    public abstract function getSchema ();
+    public static function getSchema () { return []; }
 
-    public function make ($m) {
-        $def = $this->getSchema();
+    public static function make ($m) {
+        $def = static::getSchema();
+        $self = new static ();
 
         foreach ($def as $k => $v) {
-            $class = new $v($m[$k]);
-            $this->{$k} = $class;
+            if (method_exists($v, 'make')) {
+                $class = $v::make ($m[$k]);
+            } else {
+                $class = new $v($m[$k]);
+            }
+            $self->{$k} = $class;
         }
+
+        return $self;
     }
 
-    public function __construct ($m) {
-        $this->make($m);
-    }
+    // public function __construct ($m) {
+    //     $this->make($m);
+    // }
 }
