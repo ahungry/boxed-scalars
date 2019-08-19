@@ -58,12 +58,10 @@ try {
 }
 
 // Sending too many keys - that's completely fine.
-// $business = new Business(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '5553332222']);
 $business = Business::make(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '5553332222']);
 var_dump ($business);
 
 try {
-    // $businessBad = new Business(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '']);
     $businessBad = Business::make(['x' => 'y', 'name' => 'My Great Venture', 'ph' => '']);
 } catch (\Exception $e) {
     echo $e->getMessage();
@@ -75,5 +73,5 @@ $twoBusinesses = TwoBusinesses::make(
         'b2' => ['name' => 'Blabla', 'ph' => '5553332222'],
     ]
 );
-var_dump ('here we go');
+
 var_dump ($twoBusinesses);
