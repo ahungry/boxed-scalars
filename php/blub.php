@@ -14,6 +14,10 @@ class BusinessName extends Str {}
 // Here, we want to actually use the data in some constrained way.
 class Phone extends Str
 {
+    public function coerce ($s) {
+        return preg_replace('/\D/', '', $s);
+    }
+
     public function assert (string $s) {
         $len = strlen($s);
         if ($len !== 10) return false;
@@ -46,6 +50,7 @@ $good = new Phone('5551112222');
 echo $good;
 
 try {
+    // Still bad even with coercion because it would be too short
     $bad = new Phone('1-800-order-pizza');
     echo $bad;
 } catch (\Exception $e) {
